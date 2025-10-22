@@ -2,6 +2,9 @@ import os
 import requests
 import json
 import base64
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_BASE_URL = "https://api.thucchien.ai/gemini/v1beta/models"

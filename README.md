@@ -6,43 +6,59 @@ This project is a command-line tool designed to interact with the AI Thuc Chien 
 
 ```
 AI_thuc_chien_repo/
- ├── modules/              # Python modules for each generation type
+ ├── .env                # Your secret API key (create this file)
+ ├── .gitignore          # Files and folders to be ignored by Git
+ ├── modules/            # Python modules for each generation type
  │   ├── gen_text.py
  │   ├── gen_image.py
  │   ├── gen_video.py
  │   └── gen_tts.py
- ├── input/                # Place your input files here
+ ├── input/              # Place your input files here
  │   ├── prompt.txt
  │   └── args.json
- ├── output/               # Generated content will be saved here
+ ├── output/             # Generated content will be saved here
  │   └── <generated_files>
- ├── main.py 			   # The main script to run the tool
- ├── requirements.txt      # Project dependencies
- ├── prompt.log 		   # A log of all prompts and responses
- └── README.md             # This documentation file
+ ├── main.py 			 # The main script to run the tool
+ ├── requirements.txt    # Project dependencies
+ └── README.md           # This documentation file
 ```
 
 ## Setup Instructions
 
-### 1. Set Your API Key
-This tool requires an API key to authenticate with the AI Thuc Chien gateway. You must set it as an environment variable.
+### 1. Create a Virtual Environment
+It is highly recommended to use a virtual environment to manage project dependencies.
 
-**On macOS/Linux:**
 ```bash
-export AITHUCCHIEN_API_KEY="your_api_key_here"
-```
+# Create the virtual environment
+python3 -m venv venv
 
-**On Windows (Command Prompt):**
-```bash
-set AITHUCCHIEN_API_KEY="your_api_key_here"
+# Activate the virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows (Command Prompt):
+# venv\Scripts\activate.bat
 ```
-You need to do this every time you open a new terminal, or add it to your shell's profile file (e.g., `.zshrc`, `.bash_profile`).
+You will need to activate the environment every time you work on this project in a new terminal.
 
 ### 2. Install Dependencies
-Install the necessary Python libraries using pip:
+With your virtual environment active, install the necessary Python libraries:
 ```bash
 pip install -r requirements.txt
 ```
+
+### 3. Set Your API Key
+This project loads your secret API key from a `.env` file.
+
+**Step 1: Create the file**
+Create a new file named `.env` in the root of the project directory.
+
+**Step 2: Add your key**
+Open the `.env` file and add your API key in the following format:
+```
+# Replace with your actual AI Thuc Chien API key
+AITHUCCHIEN_API_KEY="your_api_key_here"
+```
+The `.gitignore` file is configured to prevent this file from being accidentally committed to version control.
 
 ## Usage
 

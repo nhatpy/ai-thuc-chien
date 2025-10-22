@@ -120,6 +120,9 @@ if __name__ == "__main__":
 import os
 import requests
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_URL = "https://api.thucchien.ai/chat/completions"
@@ -173,6 +176,9 @@ if __name__ == '__main__':
 import os
 import requests
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_URL = "https://api.thucchien.ai/images/generations"
@@ -223,6 +229,9 @@ import os
 import requests
 import json
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
  # The base URL is now different, and we'll construct specific URLs for each step
@@ -335,6 +344,9 @@ import os
 import requests
 import json
 import base64
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_BASE_URL = "https://api.thucchien.ai/gemini/v1beta/models"
@@ -432,4 +444,27 @@ Speaker2: You're never going to guess!"""
 ## `requirements.txt`
 ```
 requests
+python-dotenv
+```
+
+## `.gitignore`
+```
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Output files
+output/
+
+# IDE / Editor specific
+.vscode/
+.idea/
 ```

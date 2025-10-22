@@ -1,6 +1,9 @@
 import os
 import requests
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_URL = "https://api.thucchien.ai/images/generations"

@@ -2,6 +2,9 @@ import os
 import requests
 import json
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
  # The base URL is now different, and we'll construct specific URLs for each step
