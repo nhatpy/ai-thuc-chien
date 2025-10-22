@@ -1,0 +1,159 @@
+# AI Thuc Chien Content Generation Tool
+
+This project is a command-line tool designed to interact with the AI Thuc Chien API gateway, allowing you to generate various types of content including text, images, videos, and text-to-speech audio.
+
+## Project Structure
+
+```
+AI_thuc_chien_repo/
+ ├── modules/              # Python modules for each generation type
+ │   ├── gen_text.py
+ │   ├── gen_image.py
+ │   ├── gen_video.py
+ │   └── gen_tts.py
+ ├── input/                # Place your input files here
+ │   ├── prompt.txt
+ │   └── args.json
+ ├── output/               # Generated content will be saved here
+ │   └── <generated_files>
+ ├── main.py 			   # The main script to run the tool
+ ├── requirements.txt      # Project dependencies
+ ├── prompt.log 		   # A log of all prompts and responses
+ └── README.md             # This documentation file
+```
+
+## Setup Instructions
+
+### 1. Set Your API Key
+This tool requires an API key to authenticate with the AI Thuc Chien gateway. You must set it as an environment variable.
+
+**On macOS/Linux:**
+```bash
+export AITHUCCHIEN_API_KEY="your_api_key_here"
+```
+
+**On Windows (Command Prompt):**
+```bash
+set AITHUCCHIEN_API_KEY="your_api_key_here"
+```
+You need to do this every time you open a new terminal, or add it to your shell's profile file (e.g., `.zshrc`, `.bash_profile`).
+
+### 2. Install Dependencies
+Install the necessary Python libraries using pip:
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+The tool is run from the command line using `main.py`.
+
+### Basic Command Structure
+```bash
+python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <image_path>]
+```
+-   `<type>`: The type of content to generate. Choices: `text`, `image`, `video`, `tts`.
+-   `<prompt_file>`: Path to a text file containing the main prompt.
+-   `--args_file`: (Optional) Path to a JSON file containing additional parameters for the API call.
+-   `--input_image`: (Optional) Path to an image file, used only for video generation (`type` = `video`).
+
+---
+
+### Example Workflows
+
+#### 1. Text Generation
+-   **`input/text_prompt.txt`**:
+    ```
+    Hãy viết một câu giới thiệu về Việt Nam.
+    ```
+-   **`input/text_args.json`**:
+    ```json
+    {
+      "system_prompt": "Bạn là một trợ lý ảo"
+    }
+    ```
+-   **Command**:
+    ```bash
+    python main.py text input/text_prompt.txt --args_file input/text_args.json
+    ```
+
+#### 2. Image Generation
+-   **`input/image_prompt.txt`**:
+    ```
+    a digital render of a massive skyscraper, modern, grand, epic with a beautiful sunset in the background
+    ```
+-   **`input/image_args.json`**:
+    ```json
+    {
+      "model": "imagen-4",
+      "aspect_ratio": "16:9"
+    }
+    ```
+-   **Command**:
+    ```bash
+    python main.py image input/image_prompt.txt --args_file input/image_args.json
+    ```
+
+#### 3. Video Generation (from Text)
+-   **`input/video_prompt.txt`**:
+    ```
+    A cinematic shot of a baby raccoon wearing a tiny cowboy hat, riding a miniature pony through a field of daisies at sunset.
+    ```
+-   **`input/video_args.json`**:
+    ```json
+    {
+      "aspect_ratio": "16:9",
+      "resolution": "1080p"
+    }
+    ```
+-   **Command**:
+    ```bash
+    python main.py video input/video_prompt.txt --args_file input/video_args.json
+    ```
+
+#### 4. Video Generation (from Image)
+-   **`input/vid_from_img_prompt.txt`**:
+    ```
+    Make this raccoon wave its hand.
+    ```
+-   **Command**:
+    ```bash
+    python main.py video input/vid_from_img_prompt.txt --input_image input/raccoon.png
+    ```
+
+#### 5. Text-to-Speech (Single Speaker)
+-   **`input/tts_prompt.txt`**:
+    ```
+    Say cheerfully: Have a wonderful day!
+    ```
+-   **`input/tts_args.json`**:
+    ```json
+    {
+      "voices": "Kore"
+    }
+    ```
+-   **Command**:
+    ```bash
+    python main.py tts input/tts_prompt.txt --args_file input/tts_args.json
+    ```
+
+#### 6. Text-to-Speech (Multiple Speakers)
+-   **`input/tts_multi_prompt.txt`**:
+    ```
+    Make Speaker1 sound tired and bored, and Speaker2 sound excited and happy:
+    Speaker1: So... what's on the agenda today?
+    Speaker2: You're never going to guess!
+    ```
+-   **`input/tts_multi_args.json`**:
+    ```json
+    {
+      "voices": {
+        "Speaker1": "Kore",
+        "Speaker2": "Puck"
+      }
+    }
+    ```
+-   **Command**:
+    ```bash
+    python main.py tts input/tts_multi_prompt.txt --args_file input/tts_multi_args.json
+    ```
