@@ -1,0 +1,3 @@
+Make Speaker1 sound tired and bored, and Speaker2 sound excited and happy:
+    Speaker1: So... what's on the agenda today?
+    Speaker2: You're never going to guess!

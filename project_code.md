@@ -65,7 +65,10 @@ def main():
     elif args.type == "image":
         response = generate_image(prompt, **api_args)
     elif args.type == "video":
-        response = generate_video(prompt, **api_args)
+        # Filter api_args to only include valid arguments for generate_video
+        valid_args = ["input_image"]
+        video_args = {k: v for k, v in api_args.items() if k in valid_args}
+        response = generate_video(prompt, **video_args)
     elif args.type == "tts":
         response = generate_tts(prompt, **api_args)
 
@@ -183,7 +186,7 @@ load_dotenv()
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_URL = "https://api.thucchien.ai/images/generations"
 
-def generate_image(prompt, model="imagen-4", n=1, aspect_ratio="1:1"):
+def generate_image(prompt, aspect_ratio="1:1", model="imagen-4", n=1):
     """
     Generates an image using the AI Thuc Chien API.
     """
@@ -237,7 +240,7 @@ API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
  # The base URL is now different, and we'll construct specific URLs for each step
 API_BASE_URL = "https://api.thucchien.ai/gemini/v1beta"
 
-def generate_video(prompt, model="veo-3.0-generate-001", negative_prompt="", aspect_ratio="16:9", resolution="720p", person_generation="allow_all", input_image=None):
+def generate_video(prompt, model="veo-3.0-generate-001", input_image=None):
     """
     Generates a video using a three-step asynchronous process:
     1. Initiate generation
@@ -254,17 +257,15 @@ def generate_video(prompt, model="veo-3.0-generate-001", negative_prompt="", asp
 
     # --- Step 1: Initiate Video Generation ---
     initiate_url = f"{API_BASE_URL}/models/{model}:predictLongRunning"
+
     initiate_payload = {
         "instances": [{
             "prompt": prompt,
             "image": input_image
         }],
-        "parameters": {
-            "negativePrompt": negative_prompt,
-            "aspectRatio": aspect_ratio,
-            "resolution": resolution,
-            "personGeneration": person_generation
-        }
+        # "parameters": {
+        #     "negativePrompt": "blurry, low quality"
+        # }
     }
 
     try:
@@ -462,7 +463,7 @@ venv/
 .env
 
 # Output files
-output/
+# output/
 
 # IDE / Editor specific
 .vscode/

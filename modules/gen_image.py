@@ -8,7 +8,7 @@ load_dotenv()
 API_KEY = os.environ.get("AITHUCCHIEN_API_KEY")
 API_URL = "https://api.thucchien.ai/images/generations"
 
-def generate_image(prompt, model="imagen-4", n=1, aspect_ratio="1:1"):
+def generate_image(prompt, aspect_ratio="1:1", model="imagen-4", n=1):
     """
     Generates an image using the AI Thuc Chien API.
     """

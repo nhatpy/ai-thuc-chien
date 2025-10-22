@@ -92,7 +92,7 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
     ```
 -   **Command**:
     ```bash
-    python main.py text input/text_prompt.txt --args_file input/text_args.json
+    python3 main.py text input/text/prompt_1.txt --args_file input/text/prompt_1.json
     ```
 
 #### 2. Image Generation
@@ -103,13 +103,12 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
 -   **`input/image_args.json`**:
     ```json
     {
-      "model": "imagen-4",
       "aspect_ratio": "16:9"
     }
     ```
 -   **Command**:
     ```bash
-    python main.py image input/image_prompt.txt --args_file input/image_args.json
+    python3 main.py image input/image/prompt_1.txt --args_file input/image/prompt_1.json
     ```
 
 #### 3. Video Generation (from Text)
@@ -117,16 +116,15 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
     ```
     A cinematic shot of a baby raccoon wearing a tiny cowboy hat, riding a miniature pony through a field of daisies at sunset.
     ```
--   **`input/video_args.json`**:
+<!-- -   **`input/video_args.json`**:
     ```json
     {
-      "aspect_ratio": "16:9",
-      "resolution": "1080p"
+      "negative_prompt": "blurry, low quality"
     }
-    ```
+    ``` -->
 -   **Command**:
     ```bash
-    python main.py video input/video_prompt.txt --args_file input/video_args.json
+    python3 main.py video input/video/prompt_1.txt
     ```
 
 #### 4. Video Generation (from Image)
@@ -136,7 +134,7 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
     ```
 -   **Command**:
     ```bash
-    python main.py video input/vid_from_img_prompt.txt --input_image input/raccoon.png
+    python3 main.py video input/video/prompt_1.txt --input_image input/video/prompt_1.png
     ```
 
 #### 5. Text-to-Speech (Single Speaker)
@@ -152,7 +150,7 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
     ```
 -   **Command**:
     ```bash
-    python main.py tts input/tts_prompt.txt --args_file input/tts_args.json
+    python3 main.py tts input/voice/prompt_1.txt --args_file input/voice/prompt_1.json
     ```
 
 #### 6. Text-to-Speech (Multiple Speakers)
@@ -173,5 +171,5 @@ python main.py <type> <prompt_file> [--args_file <args_file>] [--input_image <im
     ```
 -   **Command**:
     ```bash
-    python main.py tts input/tts_multi_prompt.txt --args_file input/tts_multi_args.json
+    python3 main.py tts input/voice/prompt_1.txt --args_file input/voice/prompt_1.json
     ```

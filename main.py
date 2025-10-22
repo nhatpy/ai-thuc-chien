@@ -61,7 +61,10 @@ def main():
     elif args.type == "image":
         response = generate_image(prompt, **api_args)
     elif args.type == "video":
-        response = generate_video(prompt, **api_args)
+        # Filter api_args to only include valid arguments for generate_video
+        valid_args = ["input_image"]
+        video_args = {k: v for k, v in api_args.items() if k in valid_args}
+        response = generate_video(prompt, **video_args)
     elif args.type == "tts":
         response = generate_tts(prompt, **api_args)
 
