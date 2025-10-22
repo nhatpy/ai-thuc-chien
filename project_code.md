@@ -7,6 +7,7 @@ import datetime
 import json
 import base64
 import mimetypes
+import wave
 from modules.gen_text import generate_text
 from modules.gen_image import generate_image
 from modules.gen_video import generate_video
@@ -90,8 +91,11 @@ def main():
         output_filename = f"output/{args.type}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
         if args.type == "tts":
             decoded_audio = base64.b64decode(response)
-            with open(f"{output_filename}.wav", "wb") as f:
-                f.write(decoded_audio)
+            with wave.open(f"{output_filename}.wav", "wb") as wav_file:
+                wav_file.setnchannels(1)  # Mono
+                wav_file.setsampwidth(2)  # 16-bit PCM (L16)
+                wav_file.setframerate(24000)
+                wav_file.writeframes(decoded_audio)
             print(f"Saved audio to {output_filename}.wav")
         elif args.type == "image":
             decoded_image = base64.b64decode(response)
@@ -257,7 +261,7 @@ def generate_video(prompt, model="veo-3.0-generate-001", input_image=None):
 
     # --- Step 1: Initiate Video Generation ---
     initiate_url = f"{API_BASE_URL}/models/{model}:predictLongRunning"
-
+    
     initiate_payload = {
         "instances": [{
             "prompt": prompt,
