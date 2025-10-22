@@ -30,11 +30,11 @@ It is highly recommended to use a virtual environment to manage project dependen
 
 ```bash
 # Create the virtual environment
-python3 -m venv venv
+python3 -m venv .venv
 
 # Activate the virtual environment
 # On macOS/Linux:
-source venv/bin/activate
+source .venv/bin/activate
 # On Windows (Command Prompt):
 # venv\Scripts\activate.bat
 ```
