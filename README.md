@@ -50,7 +50,9 @@ pip install -r requirements.txt
 This project loads your secret API key from a `.env` file.
 
 **Step 1: Create the file**
-Create a new file named `.env` in the root of the project directory.
+```bash
+cp .env.example .env
+```
 
 **Step 2: Add your key**
 Open the `.env` file and add your API key in the following format:
